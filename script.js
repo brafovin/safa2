@@ -1,16 +1,10 @@
 // Messi Memory Game
-// 8 verschiedene Messi-Motive -> 16 Karten (8 Paare)
+// 6 verschiedene Messi-Fotos -> 12 Karten (6 Paare)
 //
-// Jede Karte hat mehrere Bild-Quellen (`sources`). Die Karte probiert sie
-// nacheinander durch:
-//   1. Eigenes Foto unter `images/photos/<id>.jpg` (falls vorhanden)
-//   2. Echtes Foto von Wikimedia Commons (Special:FilePath leitet auf die
-//      aktuelle Bilddatei weiter – kein Raten von Hash-Pfaden nötig)
-//   3. SVG-Fallback als Illustration (falls kein Netzwerk / Bild fehlt)
-//
-// Wenn du deine eigenen Fotos benutzen willst: leg sie als JPG/PNG im Ordner
-// `images/photos/` ab mit den Namen wc2022, barca, argentina, ballon, psg,
-// miami, freekick, goat.
+// Jede Karte versucht zuerst ein eigenes Foto unter
+// `images/photos/<id>.jpg` zu laden. Wenn das nicht existiert, wird das
+// echte Foto von Wikimedia Commons geladen (Special:FilePath leitet auf
+// die aktuelle Bilddatei weiter).
 
 const WM = (filename) =>
   `https://commons.wikimedia.org/wiki/Special:FilePath/${filename}?width=500`;
@@ -23,7 +17,6 @@ const MESSI_CARDS = [
     sources: [
       "images/photos/wc2022.jpg",
       WM("Lionel-Messi-Argentina-2022-FIFA-World-Cup_(cropped).jpg"),
-      "images/wc2022.svg",
     ],
   },
   {
@@ -33,7 +26,6 @@ const MESSI_CARDS = [
     sources: [
       "images/photos/barca.jpg",
       WM("Lionel_Messi_31-03-2007.jpg"),
-      "images/barca.svg",
     ],
   },
   {
@@ -43,7 +35,6 @@ const MESSI_CARDS = [
     sources: [
       "images/photos/argentina.jpg",
       WM("Lionel_Messi_vs_Nigeria_2018.jpg"),
-      "images/argentina.svg",
     ],
   },
   {
@@ -53,7 +44,6 @@ const MESSI_CARDS = [
     sources: [
       "images/photos/ballon.jpg",
       WM("Lionel_Messi_Player_of_the_Year_2011.jpg"),
-      "images/ballon.svg",
     ],
   },
   {
@@ -62,28 +52,7 @@ const MESSI_CARDS = [
     emoji: "🗼",
     sources: [
       "images/photos/psg.jpg",
-      WM("Lionel_Messi_(PSG)_-_2021.jpg"),
-      "images/psg.svg",
-    ],
-  },
-  {
-    id: "miami",
-    label: "Inter Miami",
-    emoji: "🌴",
-    sources: [
-      "images/photos/miami.jpg",
-      WM("Messi_Inter_Miami_(cropped).jpg"),
-      "images/miami.svg",
-    ],
-  },
-  {
-    id: "freekick",
-    label: "Freistoß",
-    emoji: "⚽",
-    sources: [
-      "images/photos/freekick.jpg",
-      WM("Lionel_Messi_free_kick_vs_Athletic_Bilbao.jpg"),
-      "images/freekick.svg",
+      WM("Lionel_Messi_2022_(cropped).jpg"),
     ],
   },
   {
@@ -93,7 +62,6 @@ const MESSI_CARDS = [
     sources: [
       "images/photos/goat.jpg",
       WM("Lionel_Messi_20180626.jpg"),
-      "images/goat.svg",
     ],
   },
 ];
