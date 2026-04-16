@@ -25,15 +25,22 @@ python3 -m http.server 8000
 - Tastaturbedienung (Enter / Leertaste)
 - Automatisches Fallback (Emoji + Label), wenn ein Bild nicht lädt
 
-## Eigene Fotos verwenden
+## Bilder
 
-Die Motive liegen als SVG-Illustrationen im Ordner `images/`. Du kannst sie
-einfach durch eigene Fotos ersetzen. Entweder die SVGs überschreiben oder
-die Pfade in `script.js` im Array `MESSI_CARDS` anpassen:
+Jede Karte probiert drei Quellen der Reihe nach:
 
-```js
-{ id: "wc2022", label: "WM 2022", emoji: "🏆", img: "images/mein_foto.jpg" },
-```
+1. **Eigenes Foto** unter `images/photos/<id>.jpg`
+   – siehe `images/photos/README.md` für die erwarteten Dateinamen.
+2. **Echtes Foto von Wikimedia Commons**
+   (via `Special:FilePath`-Weiterleitung, benötigt Internetzugang).
+3. **SVG-Illustration** als Offline-Fallback im Ordner `images/`.
 
-Wichtig: Die `id` muss für beide Karten eines Paares gleich bleiben –
-das Spiel erzeugt das Paar automatisch.
+So bekommst du automatisch echte Fotos, sobald du welche ablegst oder
+Netzwerkzugriff hast – und sonst saubere Illustrationen statt kaputter
+Bilder.
+
+## Motive anpassen
+
+Bearbeite das Array `MESSI_CARDS` am Anfang von `script.js`. Die `id`
+muss für ein Paar identisch bleiben – das Paar wird automatisch aus
+zwei Kopien derselben Karte gebildet.

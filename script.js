@@ -1,17 +1,101 @@
 // Messi Memory Game
 // 8 verschiedene Messi-Motive -> 16 Karten (8 Paare)
-// Bilder werden von Wikimedia Commons geladen. Falls ein Bild nicht lädt,
-// wird ein stilisiertes Fallback mit Emoji + Label angezeigt.
+//
+// Jede Karte hat mehrere Bild-Quellen (`sources`). Die Karte probiert sie
+// nacheinander durch:
+//   1. Eigenes Foto unter `images/photos/<id>.jpg` (falls vorhanden)
+//   2. Echtes Foto von Wikimedia Commons (Special:FilePath leitet auf die
+//      aktuelle Bilddatei weiter – kein Raten von Hash-Pfaden nötig)
+//   3. SVG-Fallback als Illustration (falls kein Netzwerk / Bild fehlt)
+//
+// Wenn du deine eigenen Fotos benutzen willst: leg sie als JPG/PNG im Ordner
+// `images/photos/` ab mit den Namen wc2022, barca, argentina, ballon, psg,
+// miami, freekick, goat.
+
+const WM = (filename) =>
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${filename}?width=500`;
 
 const MESSI_CARDS = [
-  { id: "wc2022",    label: "WM 2022",      emoji: "🏆",  img: "images/wc2022.svg" },
-  { id: "barca",     label: "FC Barcelona", emoji: "🔵🔴", img: "images/barca.svg" },
-  { id: "argentina", label: "Argentinien",  emoji: "🇦🇷",  img: "images/argentina.svg" },
-  { id: "ballon",    label: "Ballon d'Or",  emoji: "🏅",  img: "images/ballon.svg" },
-  { id: "psg",       label: "Paris SG",     emoji: "🗼",  img: "images/psg.svg" },
-  { id: "miami",     label: "Inter Miami",  emoji: "🌴",  img: "images/miami.svg" },
-  { id: "freekick",  label: "Freistoß",     emoji: "⚽",  img: "images/freekick.svg" },
-  { id: "goat",      label: "GOAT #10",     emoji: "🐐",  img: "images/goat.svg" },
+  {
+    id: "wc2022",
+    label: "WM 2022",
+    emoji: "🏆",
+    sources: [
+      "images/photos/wc2022.jpg",
+      WM("Lionel-Messi-Argentina-2022-FIFA-World-Cup_(cropped).jpg"),
+      "images/wc2022.svg",
+    ],
+  },
+  {
+    id: "barca",
+    label: "FC Barcelona",
+    emoji: "🔵🔴",
+    sources: [
+      "images/photos/barca.jpg",
+      WM("Lionel_Messi_31-03-2007.jpg"),
+      "images/barca.svg",
+    ],
+  },
+  {
+    id: "argentina",
+    label: "Argentinien",
+    emoji: "🇦🇷",
+    sources: [
+      "images/photos/argentina.jpg",
+      WM("Lionel_Messi_vs_Nigeria_2018.jpg"),
+      "images/argentina.svg",
+    ],
+  },
+  {
+    id: "ballon",
+    label: "Ballon d'Or",
+    emoji: "🏅",
+    sources: [
+      "images/photos/ballon.jpg",
+      WM("Lionel_Messi_Player_of_the_Year_2011.jpg"),
+      "images/ballon.svg",
+    ],
+  },
+  {
+    id: "psg",
+    label: "Paris SG",
+    emoji: "🗼",
+    sources: [
+      "images/photos/psg.jpg",
+      WM("Lionel_Messi_(PSG)_-_2021.jpg"),
+      "images/psg.svg",
+    ],
+  },
+  {
+    id: "miami",
+    label: "Inter Miami",
+    emoji: "🌴",
+    sources: [
+      "images/photos/miami.jpg",
+      WM("Messi_Inter_Miami_(cropped).jpg"),
+      "images/miami.svg",
+    ],
+  },
+  {
+    id: "freekick",
+    label: "Freistoß",
+    emoji: "⚽",
+    sources: [
+      "images/photos/freekick.jpg",
+      WM("Lionel_Messi_free_kick_vs_Athletic_Bilbao.jpg"),
+      "images/freekick.svg",
+    ],
+  },
+  {
+    id: "goat",
+    label: "GOAT #10",
+    emoji: "🐐",
+    sources: [
+      "images/photos/goat.jpg",
+      WM("Lionel_Messi_20180626.jpg"),
+      "images/goat.svg",
+    ],
+  },
 ];
 
 // ---------- State ----------
@@ -89,7 +173,7 @@ function createCardEl(card) {
     <div class="card-inner">
       <div class="card-face card-back" aria-hidden="true"></div>
       <div class="card-face card-front">
-        <img alt="${card.label}" src="${card.img}" loading="lazy" />
+        <img alt="${card.label}" loading="lazy" />
         <div class="fallback" style="display:none;">
           <span class="emoji">${card.emoji}</span>
           <span class="label">${card.label}</span>
@@ -100,10 +184,22 @@ function createCardEl(card) {
 
   const img = el.querySelector("img");
   const fallback = el.querySelector(".fallback");
-  img.addEventListener("error", () => {
-    img.style.display = "none";
-    fallback.style.display = "flex";
-  });
+  const sources = Array.isArray(card.sources)
+    ? card.sources.slice()
+    : [card.img];
+  let idx = 0;
+
+  const tryNext = () => {
+    if (idx >= sources.length) {
+      img.style.display = "none";
+      fallback.style.display = "flex";
+      return;
+    }
+    img.src = sources[idx++];
+  };
+
+  img.addEventListener("error", tryNext);
+  tryNext();
 
   el.addEventListener("click", () => onCardClick(el));
   el.addEventListener("keydown", (e) => {
