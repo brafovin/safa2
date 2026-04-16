@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+  <rect width="300" height="400" fill="#004170"/>
+  <!-- Eiffel tower silhouette -->
+  <g transform="translate(150,140)" fill="#0a2a4a" opacity="0.6">
+    <path d="M-5,-90 L5,-90 L10,-60 L15,-30 L25,20 L35,80 L-35,80 L-25,20 L-15,-30 L-10,-60 Z"/>
+    <rect x="-45" y="80" width="90" height="8"/>
+  </g>
+  <!-- Red vertical stripe -->
+  <rect x="130" y="0" width="40" height="400" fill="#DA291C"/>
+  <rect x="125" y="0" width="5" height="400" fill="#FFFFFF"/>
+  <rect x="170" y="0" width="5" height="400" fill="#FFFFFF"/>
+  <!-- Jersey -->
+  <g transform="translate(150,230)">
+    <circle cx="0" cy="-100" r="30" fill="#E8C39E" stroke="#333" stroke-width="1.5"/>
+    <path d="M-75,-70 L-90,-20 L-75,0 L-75,100 L75,100 L75,0 L90,-20 L75,-70 L35,-88 Q0,-60 -35,-88 Z" fill="#004170" stroke="#DA291C" stroke-width="2"/>
+    <rect x="-18" y="-70" width="36" height="170" fill="#DA291C"/>
+    <rect x="-22" y="-70" width="4" height="170" fill="#FFFFFF"/>
+    <rect x="18" y="-70" width="4" height="170" fill="#FFFFFF"/>
+    <text x="0" y="40" text-anchor="middle" font-family="Arial Black" font-size="70" font-weight="900" fill="#FFFFFF" stroke="#000" stroke-width="1.5">30</text>
+  </g>
+  <text x="150" y="370" text-anchor="middle" font-family="Arial Black" font-size="26" font-weight="900" fill="#FFFFFF">PARIS SG</text>
+</svg>

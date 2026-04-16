@@ -27,18 +27,12 @@ python3 -m http.server 8000
 
 ## Eigene Fotos verwenden
 
-In `script.js` gibt es ganz oben das Array `MESSI_CARDS`. Dort kann man
-einfach die `img`-URLs austauschen – z. B. durch lokale Pfade wie
-`images/messi_wm.jpg`, wenn man eigene Fotos in einem `images/`-Ordner
-ablegt.
+Die Motive liegen als SVG-Illustrationen im Ordner `images/`. Du kannst sie
+einfach durch eigene Fotos ersetzen. Entweder die SVGs überschreiben oder
+die Pfade in `script.js` im Array `MESSI_CARDS` anpassen:
 
 ```js
-{
-  id: "wc2022",
-  label: "WM-Pokal 2022",
-  emoji: "🏆",
-  img: "images/messi_wm.jpg",
-}
+{ id: "wc2022", label: "WM 2022", emoji: "🏆", img: "images/mein_foto.jpg" },
 ```
 
 Wichtig: Die `id` muss für beide Karten eines Paares gleich bleiben –

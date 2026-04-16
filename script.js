@@ -4,54 +4,14 @@
 // wird ein stilisiertes Fallback mit Emoji + Label angezeigt.
 
 const MESSI_CARDS = [
-  {
-    id: "wc2022",
-    label: "WM-Pokal 2022",
-    emoji: "🏆",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Lionel_Messi_WC2022.jpg/400px-Lionel_Messi_WC2022.jpg",
-  },
-  {
-    id: "barca",
-    label: "FC Barcelona",
-    emoji: "🔵🔴",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Lionel_Messi_20180626.jpg/400px-Lionel_Messi_20180626.jpg",
-  },
-  {
-    id: "argentina",
-    label: "Argentinien",
-    emoji: "🇦🇷",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel_Messi_vs_Nigeria_2018.jpg/400px-Lionel_Messi_vs_Nigeria_2018.jpg",
-  },
-  {
-    id: "ballon",
-    label: "Ballon d'Or",
-    emoji: "🏅",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Lionel_Messi_Player_of_the_Year_2011.jpg/400px-Lionel_Messi_Player_of_the_Year_2011.jpg",
-  },
-  {
-    id: "psg",
-    label: "Paris SG",
-    emoji: "🗼",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Lionel_Messi%2C_Paris_Saint-Germain%2C_2021_%28cropped%29.jpg/400px-Lionel_Messi%2C_Paris_Saint-Germain%2C_2021_%28cropped%29.jpg",
-  },
-  {
-    id: "miami",
-    label: "Inter Miami",
-    emoji: "🌴",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Messi_debut_Inter_Miami_%28cropped%29.jpg/400px-Messi_debut_Inter_Miami_%28cropped%29.jpg",
-  },
-  {
-    id: "freekick",
-    label: "Freistoß",
-    emoji: "⚽",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Lionel_Messi_free_kick_%28cropped%29.jpg/400px-Lionel_Messi_free_kick_%28cropped%29.jpg",
-  },
-  {
-    id: "goat",
-    label: "GOAT #10",
-    emoji: "🐐",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lionel_Messi_%28cropped%29.jpg/400px-Lionel_Messi_%28cropped%29.jpg",
-  },
+  { id: "wc2022",    label: "WM 2022",      emoji: "🏆",  img: "images/wc2022.svg" },
+  { id: "barca",     label: "FC Barcelona", emoji: "🔵🔴", img: "images/barca.svg" },
+  { id: "argentina", label: "Argentinien",  emoji: "🇦🇷",  img: "images/argentina.svg" },
+  { id: "ballon",    label: "Ballon d'Or",  emoji: "🏅",  img: "images/ballon.svg" },
+  { id: "psg",       label: "Paris SG",     emoji: "🗼",  img: "images/psg.svg" },
+  { id: "miami",     label: "Inter Miami",  emoji: "🌴",  img: "images/miami.svg" },
+  { id: "freekick",  label: "Freistoß",     emoji: "⚽",  img: "images/freekick.svg" },
+  { id: "goat",      label: "GOAT #10",     emoji: "🐐",  img: "images/goat.svg" },
 ];
 
 // ---------- State ----------
@@ -134,7 +94,6 @@ function createCardEl(card) {
           <span class="emoji">${card.emoji}</span>
           <span class="label">${card.label}</span>
         </div>
-        <span class="caption">${card.label}</span>
       </div>
     </div>
   `;
