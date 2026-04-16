@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messi Memory</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>⚽ Messi Memory 🐐</h1>
+      <p class="subtitle">Finde alle passenden Paare!</p>
+    </header>
+
+    <section class="hud">
+      <div class="stat">
+        <span class="label">Züge</span>
+        <span id="moves" class="value">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">Paare</span>
+        <span id="pairs" class="value">0 / 8</span>
+      </div>
+      <div class="stat">
+        <span class="label">Zeit</span>
+        <span id="time" class="value">00:00</span>
+      </div>
+      <button id="restart" class="btn">🔄 Neustart</button>
+    </section>
+
+    <main id="board" class="board" aria-label="Memory Spielfeld"></main>
+
+    <div id="win" class="win hidden" role="dialog" aria-modal="true">
+      <div class="win-card">
+        <h2>🏆 Gewonnen!</h2>
+        <p>Du hast alle Paare in <strong><span id="win-moves">0</span></strong> Zügen und <strong><span id="win-time">00:00</span></strong> gefunden.</p>
+        <button id="play-again" class="btn primary">Nochmal spielen</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <small>Fotos: Wikimedia Commons / Creative Commons</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
